@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Promise Demo 3</title>
+</head>
+
+<body>
+	<script>
+		// https://javascript.info/promise-basics
+    
+		let p1 = Promise.resolve('ok')
+			.then(value => {
+				console.log(`in then1 ${value}`)
+				return `${value}!!`
+			})
+			.then(value => {
+				console.log(`in then2 ${value}`)
+				throw new Error("42")
+			})
+			.then(value => {
+				console.log(`in then3 ${value}`)
+			})
+			.catch(reason => {
+				console.log(`I caught ${reason}`)
+			})
+
+		console.log(p1)
+	</script>
+</body>
+
+</html>

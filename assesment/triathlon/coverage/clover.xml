@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1744326676917" clover="3.2.0">
+  <project timestamp="1744326676917" name="All files">
+    <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4" elements="15" coveredelements="15" complexity="0" loc="9" ncloc="9" packages="1" files="3" classes="3"/>
+    <file name="subtract.js" path="C:\Users\jayla\OneDrive\Desktop\Study Files\BCIS211 - Web and media development\assesment\triathlon\model\subtract.js">
+      <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="2" count="2" type="cond" truecount="2" falsecount="0"/>
+    </file>
+    <file name="sum.js" path="C:\Users\jayla\OneDrive\Desktop\Study Files\BCIS211 - Web and media development\assesment\triathlon\model\sum.js">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+    </file>
+    <file name="workout.js" path="C:\Users\jayla\OneDrive\Desktop\Study Files\BCIS211 - Web and media development\assesment\triathlon\model\workout.js">
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

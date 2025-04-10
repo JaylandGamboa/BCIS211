@@ -1,0 +1,27 @@
+<!—BoxToy.html -->
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script src='src/View.js'></script>
+<script src='src/BoxToy.js'></script>
+
+<script>
+// <<CONTROLLER>>
+function main () {
+  let theBox = new Box()
+
+  theBox.addToy('Teddy', 'Brown', 12.34)
+  theBox.addToy('Dolly', 'Pink', 21.43)
+  theBox.addToy('Bat', 'Wooden', 34.56)
+
+  View.clr()
+  View.out(theBox)
+}
+
+window.onload = main
+
+</script>
+</body>
+</html>

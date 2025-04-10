@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Promise Demo 2</title>
+</head>
+
+<body>
+	<script>
+    	// https://javascript.info/promise-basics
+    
+		let isWorking = true
+
+		let p1 = new Promise((resolve, reject) => {
+			console.log("Start")    
+			if (isWorking) {
+				resolve('fulfilled value') // fulfilled
+			} else {
+				reject('failure reason') // rejected
+			}
+			console.log('jump')
+		})
+
+		p1
+			.then(fulfilledValue => {
+				// a function that runs when the promise is resolved, and receives the result.
+				console.log(`in then1 ${fulfilledValue}`)
+				// return `${fulfilledValue}!!`
+				throw 'I am a brat'
+			}, failedReason => {
+				// a function that runs when the promise is rejected, and receives the error.
+				console.log(`then1 went bad ${failedReason}`)
+				return 'I am sooooo sorry!!'
+				// return reason
+			})
+			.then(fulfilledValue => {
+				console.log(`in then2 ${fulfilledValue}`)
+				return `${fulfilledValue}!!`
+			}, failedReason => {
+				console.log(`then2 went bad ${failedReason}`)
+				throw 'almost at the end'
+			})
+			.then(fulfilledValue => {
+				console.log(fulfilledValue)
+			})
+			.catch(failedReason => {
+				console.log(`final catch ${failedReason}`)
+			})
+
+		console.log(p1)
+	</script>
+</body>
+
+</html>

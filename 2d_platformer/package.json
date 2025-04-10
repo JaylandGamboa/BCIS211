@@ -1,0 +1,12 @@
+{
+  "name": "2d_platformer",
+  "version": "1.0.0",
+  "description": "simple mvc framework",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jayland",
+  "license": "ISC"
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="EN">
+
+<head>
+	<meta charset="utf-8">
+	<title>Promise Demo 1</title>
+</head>
+
+<body>
+	<script>
+		// https://scotch.io/tutorials/javascript-promises-for-dummies
+
+		let isWorking = true
+
+		// Create a promise 
+		// A promise is an object that represents the result of an asynchronous operation
+		// resolve is a function that runs when the promise is resolved/fulfilled, and receives the result.
+		// reject is a function that runs when the promise is rejected, and receives the reason.
+		let p1 = new Promise((resolve, reject) => {
+			console.log("start")
+			if (isWorking) {
+				resolve('fulfilled value') // fulfilled
+			} else {
+				reject('failure reason') // rejected
+			}
+			console.log("jump")
+		})
+
+		p1
+			.then(fulfilledValue => {
+				// a function that runs when the promise is resolved, and receives the result.
+				console.log(`in then1 ${fulfilledValue}`)
+				return `${fulfilledValue}!!`
+			})
+			.then(fulfilledValue => {
+				console.log(`in then2 ${fulfilledValue}`)
+				throw 42
+			})
+			.then(fulfilledValue => {
+				console.log(`in then3 ${fulfilledValue}`)
+			})
+			.catch(failedReason => {
+				console.log(`I caught ${failedReason}`)
+			})
+
+		console.log(p1)
+	</script>
+</body>
+
+</html>
