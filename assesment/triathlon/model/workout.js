@@ -3,8 +3,8 @@ class Workout{
     name
     type
     distance
-    isDone
-    comment
+    isDone = false
+    comment  = 'Comment Goes Here'
 
     constructor(id,name,type,distance,isDone,comment){
         this.id = id
@@ -18,7 +18,5 @@ class Workout{
         return `${this.id} ${this.name} ${this.type} ${this.distance} ${this.isDone} ${this.comment}`
     }
 }
-// const workout = new Workout(1,'test','testt',2,true,'test3')
-// console.log(workout.toString())
 
 export default Workout

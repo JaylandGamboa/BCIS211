@@ -1,6 +1,4 @@
-/* 
-<<MODEL>>
-*/
+
 class ToyValidator {
     static validateToyProperties(name, colour, cost) {
         if (typeof name !== 'string' || typeof colour !== 'string') {

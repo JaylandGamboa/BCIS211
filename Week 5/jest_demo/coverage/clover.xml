@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1744274463702" clover="3.2.0">
-  <project timestamp="1744274463702" name="All files">
+<coverage generated="1744329294085" clover="3.2.0">
+  <project timestamp="1744329294086" name="All files">
     <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2" elements="20" coveredelements="20" complexity="0" loc="14" ncloc="14" packages="1" files="2" classes="2"/>
     <file name="subtract.js" path="C:\Users\jayla\OneDrive\Desktop\Study Files\BCIS211 - Web and media development\Week 5\jest_demo\src\subtract.js">
       <metrics statements="5" coveredstatements="5" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
