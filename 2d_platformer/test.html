@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>2D Platformer Fixed</title>
+  <style>
+    canvas {
+      background: #222;
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<script>
+// === Canvas Setup ===
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const tileSize = 32;
+const level = [
+  "........................",
+  "........................",
+  ".....###................",
+  "...............#####....",
+  "....................#...",
+  "....#####...........#...",
+  "....................#...",
+  ".........####...........",
+  "....................##..",
+  "########################"
+];
+const rows = level.length;
+const cols = level[0].length;
+canvas.width = cols * tileSize;
+canvas.height = rows * tileSize;
+
+// === Player ===
+const player = {
+  x: 50,
+  y: 0,
+  width: 28,
+  height: 28,
+  dx: 0,
+  dy: 0,
+  speed: 0.5,
+  maxSpeed: 3,
+  jumpForce: -10,
+  gravity: 0.5,
+  friction: 0.85,
+  onGround: false
+};
+
+// === Input ===
+const keys = {};
+window.addEventListener("keydown", e => keys[e.key] = true);
+window.addEventListener("keyup", e => keys[e.key] = false);
+
+// === Game Loop ===
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+gameLoop();
+
+// === Update Logic ===
+function update() {
+  // Horizontal input
+  if (keys["ArrowLeft"]) {
+    player.dx -= player.speed;
+  } else if (keys["ArrowRight"]) {
+    player.dx += player.speed;
+  } else {
+    player.dx *= player.friction;
+  }
+
+  // Clamp horizontal speed
+  player.dx = Math.max(-player.maxSpeed, Math.min(player.dx, player.maxSpeed));
+
+  // Jump
+  if ((keys[" "] || keys["ArrowUp"]) && player.onGround) {
+    player.dy = player.jumpForce;
+    player.onGround = false;
+  }
+
+  // Gravity
+  player.dy += player.gravity;
+
+  moveX(player.dx);
+  moveY(player.dy);
+}
+
+// === Collision Helpers ===
+function isSolid(x, y) {
+  const col = Math.floor(x / tileSize);
+  const row = Math.floor(y / tileSize);
+  if (col < 0 || col >= cols || row < 0 || row >= rows) return true;
+  return level[row][col] === "#";
+}
+
+function moveX(dx) {
+  player.x += dx;
+
+  const left = player.x;
+  const right = player.x + player.width;
+  const top = player.y;
+  const bottom = player.y + player.height;
+
+  if (dx > 0) {
+    if (isSolid(right, top) || isSolid(right, bottom - 1)) {
+      player.x = Math.floor(right / tileSize) * tileSize - player.width - 0.01;
+      player.dx = 0;
+    }
+  } else if (dx < 0) {
+    if (isSolid(left, top) || isSolid(left, bottom - 1)) {
+      player.x = Math.floor(left / tileSize + 1) * tileSize + 0.01;
+      player.dx = 0;
+    }
+  }
+}
+
+function moveY(dy) {
+  player.y += dy;
+
+  const left = player.x;
+  const right = player.x + player.width;
+  const top = player.y;
+  const bottom = player.y + player.height;
+
+  player.onGround = false;
+
+  if (dy > 0) {
+    if (isSolid(left, bottom) || isSolid(right - 1, bottom)) {
+      player.y = Math.floor(bottom / tileSize) * tileSize - player.height - 0.01;
+      player.dy = 0;
+      player.onGround = true;
+    }
+  } else if (dy < 0) {
+    if (isSolid(left, top) || isSolid(right - 1, top)) {
+      player.y = Math.floor(top / tileSize + 1) * tileSize + 0.01;
+      player.dy = 0;
+    }
+  } else {
+    // Check for standing on ground even if not falling
+    if (isSolid(left, bottom + 1) || isSolid(right - 1, bottom + 1)) {
+      player.onGround = true;
+    }
+  }
+}
+
+// === Draw Everything ===
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw level
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (level[y][x] === "#") {
+        ctx.fillStyle = "#888";
+        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+      }
+    }
+  }
+
+  // Draw player
+  ctx.fillStyle = "lime";
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+}
+</script>
+</body>
+</html>

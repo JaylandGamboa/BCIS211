@@ -6,7 +6,6 @@ class View{
         const content = new View
         return document.getElementById("main").innerHTML = content.canvas()
      }
-
 }
 
  export default View
